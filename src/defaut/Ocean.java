@@ -13,6 +13,7 @@ public class Ocean {
         for(int i=0; i<NB_ZONE; i++) {
             for(int y =0; y<NB_ZONE; y++) {
                 Zone zone = new Zone(i,y);
+                this.zones.add(zone);
             }
         }
     }
