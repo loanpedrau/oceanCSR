@@ -12,4 +12,8 @@ public class Zone {
         this.x = x;
         this.y = y;
     }
+    
+    public void setSharkPresent(boolean present) {
+        this.sharkIsPresent = present;
+    }
 }
