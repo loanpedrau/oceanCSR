@@ -54,6 +54,7 @@ public class Requin extends Thread{
             }            
             nbCycleRestant--;
         }
+        this.actualZone.sortir();
     }
 
     private Zone leftZone(Zone zone){
@@ -94,5 +95,9 @@ public class Requin extends Thread{
         }else {
             return this.zones[x+1][y];
         }
+    }
+    
+    public Zone getActualZone() {
+        return this.actualZone;
     }
 }
