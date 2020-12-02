@@ -31,6 +31,10 @@ public class Ocean {
                 }
             }
         }
+        for(int i=0; i< this.requins.size(); i++) {
+            this.requins.get(i).start();
+        }
+        
     }
     
     

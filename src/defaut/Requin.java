@@ -86,7 +86,7 @@ public class Requin extends Thread{
         if(x == nbZone-1) {
             return this.zones[0][y];
         }else {
-            return this.zones[x-1][y];
+            return this.zones[x+1][y];
         }
     }
 }
