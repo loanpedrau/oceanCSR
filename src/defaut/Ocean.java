@@ -6,26 +6,27 @@ import java.util.Random;
 
 public class Ocean {
     
-    private ArrayList<Zone> zones;
+    private static Zone[][] zones;
     private ArrayList<Requin> requins;
     private static final int NB_ZONE = 4;
     
     public Ocean() {
         Random random = new Random();
-        this.zones = new ArrayList<Zone>();
+        this.zones = new Zone[NB_ZONE][NB_ZONE];
         this.requins = new ArrayList<Requin>();
         for(int i=0; i<NB_ZONE; i++) {
             for(int y =0; y<NB_ZONE; y++) {
                 Zone zone = new Zone(i,y);
-                this.zones.add(zone);
+                this.zones[i][y] = zone;
             }
         }
         for(int i=0; i<NB_ZONE; i++) {
             for(int y =0; y<NB_ZONE; y++) {
                 if(random.nextBoolean()) {
-                    int randomZone = (int)(Math.random() * (NB_ZONE*NB_ZONE));
-                    Zone actualZone = this.zones.get(randomZone);
-                    this.requins.add(new Requin(this.zones, actualZone));
+                    int xRandom = (int)(Math.random() * NB_ZONE);
+                    int yRandom = (int)(Math.random() * NB_ZONE);
+                    Zone actualZone = this.zones[xRandom][yRandom];
+                    this.requins.add(new Requin(this.zones, actualZone, NB_ZONE));
                     actualZone.setSharkPresent(true);
                 }
             }

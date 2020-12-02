@@ -32,7 +32,7 @@ public class Zone {
     public void setSharkPresent(boolean present) {
         this.sharkIsPresent = present;
     }
-    public void SharkEat(){
+    public void sharkEat(){
         if(this.nbSardines > 0){
             this.nbSardines --;
         }
