@@ -34,13 +34,18 @@ public class Ocean {
         for(int i=0; i< this.requins.size(); i++) {
             this.requins.get(i).start();
         }
-        
+        for(int i=0; i< this.requins.size(); i++) {
+            try {
+                this.requins.get(i).join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     
     /* Point d'entree du programme */
     public static void main(String[] args) {
-
         Ocean ocean = new Ocean();
     }
 }

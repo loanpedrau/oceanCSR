@@ -26,11 +26,17 @@ public class Requin extends Thread{
             switch(random) {
             case 0:
                 nextZone = leftZone(actualZone);
+                break;
             case 1 :
                 nextZone = rightZone(actualZone);
+                break;
             case 2:
                 nextZone = upperZone(actualZone);
+                break;
             case 3 :
+                nextZone = underZone(actualZone);
+                break;
+            default :
                 nextZone = underZone(actualZone);
             }
             this.actualZone = nextZone;
@@ -40,7 +46,7 @@ public class Requin extends Thread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.actualZone.sharkEat();;
+            this.actualZone.sharkEat();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
