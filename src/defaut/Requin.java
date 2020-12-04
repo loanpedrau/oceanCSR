@@ -11,6 +11,7 @@ public class Requin extends Thread{
     private Zone actualZone;
     private int nbZone;
     private int capacitePilotes;
+    private int cptPilotes;
     private int sleep = 1000;
     
     public Requin(Zone[][] zones, Zone actualZone, int nbZone ) {
@@ -19,6 +20,7 @@ public class Requin extends Thread{
         this.actualZone = actualZone;
         this.nbZone = nbZone;
         this.capacitePilotes = 5;
+        this.cptPilotes = 0;
     }
     
     public void run() {
@@ -108,10 +110,27 @@ public class Requin extends Thread{
     
     
     public synchronized void accrocher() {
+        while(this.cptPilotes >= this.capacitePilotes){
+                try {
+                    System.out.println("Le poisson pilote : "+Thread.currentThread().getName()+
+                            " attends dans la zone ("+actualZone.getX()+" , "+actualZone.getY()+")");
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        this.cptPilotes++;
+        System.out.println(" poisson pilote : " + Thread.currentThread().getName() + " " +
+                        "s est accroché dans la zone (" + actualZone.getX() + " , " + actualZone.getY() + ")");
         
     }
     
     public synchronized void decrocher() {
-        
+
+        cptPilotes --;
+        this.notifyAll();
+        System.out.println(" poisson pilote : " + Thread.currentThread().getName() + " " +
+                "s est deccroché dans la zone (" + actualZone.getX() + " , " + actualZone.getY() + ")");
     }
 }
