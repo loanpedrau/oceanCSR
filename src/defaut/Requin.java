@@ -10,12 +10,15 @@ public class Requin extends Thread{
     private Zone[][] zones;
     private Zone actualZone;
     private int nbZone;
+    private int capacitePilotes;
+    private int sleep = 1000;
     
-    public Requin(Zone[][] zones, Zone actualZone, int nbZone) {
+    public Requin(Zone[][] zones, Zone actualZone, int nbZone ) {
         this.nbCycleRestant = 10;
         this.zones = zones;
         this.actualZone = actualZone;
         this.nbZone = nbZone;
+        this.capacitePilotes = 5;
     }
     
     public void run() {
@@ -42,13 +45,13 @@ public class Requin extends Thread{
             this.actualZone = nextZone;
             this.actualZone.entrer();
             try {
-                Thread.sleep(100);
+                Thread.sleep(sleep);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             this.actualZone.sharkEat();
             try {
-                Thread.sleep(100);
+                Thread.sleep(sleep);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }            
