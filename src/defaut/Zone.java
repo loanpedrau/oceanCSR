@@ -6,6 +6,8 @@ public class Zone {
     private int y;
     private int nbSardines;
     private boolean sharkIsPresent;
+    private Requin requin;
+    
     public void setX(int x) {
         this.x = x;
     }
@@ -29,6 +31,10 @@ public class Zone {
         this.y = y;
     }
     
+    public void setRequin(Requin requin) {
+        this.requin = requin;
+    }
+    
     public void setSharkPresent(boolean present) {
         this.sharkIsPresent = present;
     }
@@ -37,7 +43,7 @@ public class Zone {
             this.nbSardines --;
         }
     }
-    public synchronized void entrer(){
+    public synchronized void entrer(Requin requin){
         while(sharkIsPresent){
             try {
                 System.out.println("Le requin : "+Thread.currentThread().getName()+" attends dans la zone ("+this.x+" , "+this.y+")");
@@ -47,14 +53,20 @@ public class Zone {
             }
         }
         this.sharkIsPresent = true;
+        this.requin = requin;
         this.notifyAll();
         System.out.println(" requin : "+Thread.currentThread().getName()+" est rentré dans la zone ("+this.x+" , "+this.y+")");
     }
 
     public synchronized void sortir(){
         this.sharkIsPresent = false;
+        this.requin = null;
         this.notifyAll();
         System.out.println(" requin : "+Thread.currentThread().getName()+" est sorti de la zone ("+this.x+" , "+this.y+")");
 
+    }
+    
+    public synchronized void accrocherRequin() {
+        
     }
 }

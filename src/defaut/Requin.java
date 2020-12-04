@@ -43,7 +43,8 @@ public class Requin extends Thread{
                 nextZone = underZone(actualZone);
             }
             this.actualZone = nextZone;
-            this.actualZone.entrer();
+            this.actualZone.entrer(this);
+            
             try {
                 Thread.sleep(sleep);
             } catch (InterruptedException e) {
@@ -102,5 +103,15 @@ public class Requin extends Thread{
     
     public Zone getActualZone() {
         return this.actualZone;
+    }
+    
+    
+    
+    public synchronized void accrocher() {
+        
+    }
+    
+    public synchronized void decrocher() {
+        
     }
 }

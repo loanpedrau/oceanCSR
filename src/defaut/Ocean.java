@@ -26,8 +26,10 @@ public class Ocean {
                     int xRandom = (int)(Math.random() * NB_ZONE);
                     int yRandom = (int)(Math.random() * NB_ZONE);
                     Zone actualZone = this.zones[xRandom][yRandom];
-                    this.requins.add(new Requin(this.zones, actualZone, NB_ZONE));
+                    Requin requin =  new Requin(this.zones, actualZone, NB_ZONE);
+                    this.requins.add(requin);
                     actualZone.setSharkPresent(true);
+                    actualZone.setRequin(requin);
                 }
             }
         }

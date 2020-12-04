@@ -15,4 +15,13 @@ public class PoissonPilote extends Thread{
         this.actualZone = actualZone;
         this.nbCycleRestant = 10;
     }
+    
+    public void run() {
+        while(nbCycleRestant >0) {
+            actualZone.accrocherRequin();
+            
+            
+            nbCycleRestant--;
+        }
+    }
 }
