@@ -13,14 +13,16 @@ public class PoissonPilote extends Thread{
     public PoissonPilote(Zone[][] zones, Zone actualZone) {
         this.zones = zones;
         this.actualZone = actualZone;
-        this.nbCycleRestant = 10;
+        this.nbCycleRestant = 2;
     }
     
     public void run() {
         while(nbCycleRestant >0) {
-            actualZone.accrocherRequin();
-            
-            
+            this.actualZone.attendreEntrerRequin();
+            this.requin = this.actualZone.getRequin();
+            if(this.requin.accrocher(this.actualZone)) {
+                this.actualZone = this.requin.decrocher(this.actualZone);
+            }
             nbCycleRestant--;
         }
     }

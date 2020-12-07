@@ -55,18 +55,46 @@ public class Zone {
         this.sharkIsPresent = true;
         this.requin = requin;
         this.notifyAll();
-        System.out.println(" requin : "+Thread.currentThread().getName()+" est rentré dans la zone ("+this.x+" , "+this.y+")");
+        System.out.println("Le requin : "+Thread.currentThread().getName()+" est rentré dans la zone ("+this.x+" , "+this.y+")");
     }
 
     public synchronized void sortir(){
         this.sharkIsPresent = false;
         this.requin = null;
         this.notifyAll();
-        System.out.println(" requin : "+Thread.currentThread().getName()+" est sorti de la zone ("+this.x+" , "+this.y+")");
+        System.out.println("Le requin : "+Thread.currentThread().getName()+" est sorti de la zone ("+this.x+" , "+this.y+")");
 
     }
     
-    public synchronized void accrocherRequin() {
-        
+    public synchronized void attendreEntrerRequin() {
+        while(this.requin == null) {
+            System.out.println(Thread.currentThread().getName()+" attends un requin dans la zone : "+x+","+y);
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(Thread.currentThread().getName()+" a trouv� un requin dans la zone : "+x+","+y);
+    } 
+    
+    public Requin getRequin() {
+        return this.requin;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj)
+       return true;
+      if (obj == null)
+        return false;
+      if (getClass() != obj.getClass())
+        return false;
+      Zone zone = (Zone) obj;
+      if (x != zone.x)
+        return false;
+      if (y != zone.y)
+        return false;
+      return true;
     }
 }
