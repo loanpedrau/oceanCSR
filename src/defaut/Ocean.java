@@ -45,13 +45,6 @@ public class Ocean {
         for(int i=0; i< this.requins.size(); i++) {
             this.requins.get(i).start();
         }
-        for(int i=0; i< this.poissonsPilotes.size(); i++) {
-            try {
-                this.poissonsPilotes.get(i).join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
         for(int i=0; i< this.requins.size(); i++) {
             try {
                 this.requins.get(i).join();
